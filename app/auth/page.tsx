@@ -100,8 +100,8 @@ export default function AuthPage() {
       {/* <VantaBackground /> */}
       <Navigation />
 
-      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md mx-auto">
+      <section className="fixed inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-md w-full">
           <div className="bg-card border border-border rounded-lg p-8 backdrop-blur-sm">
             <h1 className="text-2xl font-bold text-foreground mb-2 text-center">
               {isSignUp ? "Create Account" : "Welcome Back"}
@@ -240,25 +240,6 @@ export default function AuthPage() {
               </button>
             </p>
           </div>
-
-          {/* User Dashboard Preview */}
-          {!isSignUp && (
-            <div className="mt-8 bg-card border border-border rounded-lg p-6 backdrop-blur-sm">
-              <h3 className="font-semibold text-foreground mb-4">Dashboard Preview</h3>
-              <div className="space-y-3">
-                {[
-                  { label: "My Lost Items", value: "3" },
-                  { label: "My Found Items", value: "1" },
-                  { label: "Active Chats", value: "5" },
-                ].map((item, i) => (
-                  <div key={i} className="flex justify-between items-center p-3 bg-secondary/50 rounded">
-                    <span className="text-sm text-muted-foreground">{item.label}</span>
-                    <span className="font-semibold text-primary">{item.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </section>
     </div>

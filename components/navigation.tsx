@@ -57,17 +57,7 @@ export default function Navigation() {
                            shadow-md hover:shadow-accent/40 
                            transition-all bg-transparent font-semibold"
               >
-                Sign In
-              </Button>
-            </Link>
-
-            {/* Sign Up stays same */}
-            <Link href="/auth">
-              <Button
-                size="sm"
-                className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground shadow-lg font-semibold"
-              >
-                Sign Up
+                Sign In or Sign Up
               </Button>
             </Link>
           </div>

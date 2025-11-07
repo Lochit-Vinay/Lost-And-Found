@@ -108,18 +108,23 @@
                 const colors = ["from-primary", "from-secondary", "from-accent"]
                 return (
                   <div
-                    key={i}
-                    className={`p-6 rounded-lg bg-gradient-to-br ${colors[i]}/10 border border-${colors[i].split("-")[1]} hover:border-${colors[i].split("-")[1]}/70 hover:shadow-lg transition-all duration-300 cursor-pointer backdrop-blur-sm hover:scale-105`}
-                    onMouseEnter={() => setActiveFeature(i)}
-                  >
-                    <div
-                      className={`w-12 h-12 bg-gradient-to-br ${colors[i]} to-accent rounded-lg flex items-center justify-center mb-4 shadow-lg`}
-                    >
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground text-sm">{feature.description}</p>
-                  </div>
+  key={i}
+  className={`p-6 rounded-lg bg-gradient-to-br ${colors[i]}/10 
+  border border-accent/40
+  hover:border-accent 
+  hover:shadow-[0_0_15px_var(--accent)]
+  transition-all duration-300 cursor-pointer backdrop-blur-sm hover:scale-105`}
+  onMouseEnter={() => setActiveFeature(i)}
+>
+  <div
+    className={`w-12 h-12 bg-gradient-to-br ${colors[i]} to-accent rounded-lg flex items-center justify-center mb-4 shadow-lg`}
+  >
+    <Icon className="w-6 h-6 text-white" />
+  </div>
+
+  <h3 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
+  <p className="text-muted-foreground text-sm">{feature.description}</p>
+</div>
                 )
               })}
             </div>
@@ -182,7 +187,7 @@
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center bg-gradient-to-r from-primary via-secondary to-accent/30 rounded-2xl p-12 border border-secondary/50 shadow-2xl hover:shadow-3xl transition-all">
             <h2 className="text-3xl font-bold mb-4 text-foreground">Ready to Find Your Lost Items?</h2>
-            <p className="text-muted-foreground mb-6">Join our community today and increase your chances of recovery.</p>
+            <p className="text-black mb-6">Join our community today and increase your chances of recovery.</p>
             <Link href="/auth">
               <Button
                 size="lg"
