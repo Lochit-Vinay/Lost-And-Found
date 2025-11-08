@@ -216,13 +216,23 @@ export default function AuthPage() {
             <div className="space-y-2">
               <Button
                 type="button"
-                onClick={handleGoogleAuth}
-                disabled={isLoading}
-                variant="outline"
-                className="w-full border-border hover:bg-secondary/50 bg-transparent disabled:opacity-50"
-              >
-                <Mail className="w-4 h-4 mr-2" />
-                Google
+  onClick={handleGoogleAuth}
+  disabled={isLoading}
+  className="
+    w-full
+    flex items-center justify-center
+    gap-2
+    bg-[#0f1112]
+    border border-[#1c1f22]
+    text-gray-300
+    transition
+    hover:bg-[#1a1d21]
+    hover:border-[#2a2e33]
+    disabled:opacity-50
+  "
+>
+  <Mail className="w-4 h-4" />
+  Google
               </Button>
             </div>
 

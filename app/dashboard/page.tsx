@@ -13,7 +13,6 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Check if user is logged in
     const userData = localStorage.getItem("user")
     if (!userData) {
       router.push("/auth")
@@ -37,11 +36,17 @@ export default function DashboardPage() {
 
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
+
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Welcome, {user?.name}!</h1>
-              <p className="text-muted-foreground mt-2">Manage your lost and found items</p>
+              <h1 className="text-3xl font-bold text-foreground">
+                Welcome, {user?.name}!
+              </h1>
+              <p className="text-muted-foreground mt-2">
+                Manage your lost and found items
+              </p>
             </div>
+
             <Link href="/report">
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Plus className="w-4 h-4 mr-2" />
@@ -76,6 +81,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
             <div className="lg:col-span-2 bg-card border border-border rounded-lg p-6 backdrop-blur-sm">
               <h2 className="text-xl font-bold text-foreground mb-4">Recent Activity</h2>
               <div className="space-y-4">
@@ -106,29 +112,66 @@ export default function DashboardPage() {
             <div className="bg-card border border-border rounded-lg p-6 backdrop-blur-sm">
               <h2 className="text-xl font-bold text-foreground mb-4">Quick Actions</h2>
               <div className="space-y-2">
+
+                {/* ✅ FIXED BUTTONS BELOW */}
                 <Link href="/report" className="block">
-                  <Button variant="outline" className="w-full justify-start text-left bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="
+                      w-full justify-start text-left
+                      bg-[#121415]
+                      border border-[#1f2225]
+                      text-gray-200
+                      hover:bg-[#1a1d21]
+                      hover:border-[#2a2e33]
+                    "
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Report Item
                   </Button>
                 </Link>
+
                 <Link href="/status" className="block">
-                  <Button variant="outline" className="w-full justify-start text-left bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="
+                      w-full justify-start text-left
+                      bg-[#121415]
+                      border border-[#1f2225]
+                      text-gray-200
+                      hover:bg-[#1a1d21]
+                      hover:border-[#2a2e33]
+                    "
+                  >
                     <Search className="w-4 h-4 mr-2" />
                     Browse Items
                   </Button>
                 </Link>
+
                 <Link href="/chat" className="block">
-                  <Button variant="outline" className="w-full justify-start text-left bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="
+                      w-full justify-start text-left
+                      bg-[#121415]
+                      border border-[#1f2225]
+                      text-gray-200
+                      hover:bg-[#1a1d21]
+                      hover:border-[#2a2e33]
+                    "
+                  >
                     <MessageSquare className="w-4 h-4 mr-2" />
                     Messages
                   </Button>
                 </Link>
+
               </div>
             </div>
+
           </div>
         </div>
       </section>
     </div>
   )
 }
+  

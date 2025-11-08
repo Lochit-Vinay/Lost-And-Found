@@ -213,9 +213,9 @@
                 <p className="text-sm text-muted-foreground">Reuniting belongings with their owners.</p>
               </div>
               {[
-                { title: "Product", links: ["Features", "Pricing", "Security"] },
-                { title: "Company", links: ["About", "Blog", "Careers"] },
-                { title: "Legal", links: ["Privacy", "Terms", "Contact"] },
+                { title: "Product", links: ["Features", "Security"] },
+                { title: "Company", links: ["About"] },
+                { title: "Legal", links: ["Privacy", "Terms"] },
               ].map((col, i) => (
                 <div key={i}>
                   <h4 className="font-bold mb-4 text-foreground">{col.title}</h4>

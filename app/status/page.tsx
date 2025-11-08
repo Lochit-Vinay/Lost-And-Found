@@ -189,30 +189,31 @@ export default function StatusPage() {
   const toggleLike = (id: number) => {
     setLikedItems((prev) => {
       const newSet = new Set(prev)
-      if (newSet.has(id)) {
-        newSet.delete(id)
-      } else {
-        newSet.add(id)
-      }
+      newSet.has(id) ? newSet.delete(id) : newSet.add(id)
       return newSet
     })
   }
 
   return (
     <div className="min-h-screen bg-background">
-      {/* <VantaBackground /> */}
       <Navigation />
 
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
+
+          {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-balance">Browse Lost & Found Items</h1>
-            <p className="text-muted-foreground">AI-powered matching helps you find your belongings faster</p>
+            <h1 className="text-3xl font-bold text-foreground mb-2 text-balance">
+              Browse Lost & Found Items
+            </h1>
+            <p className="text-muted-foreground">
+              AI-powered matching helps you find your belongings faster
+            </p>
           </div>
 
-          {/* Search Bar */}
+          {/* Search */}
           <div className="mb-6 bg-card border border-border rounded-lg p-4 backdrop-blur-sm">
-            <div className="flex items-center gap-2 px-4 py-3 border border-input rounded-lg bg-background/50 focus-within:ring-1 focus-within:ring-ring">
+            <div className="flex items-center gap-2 px-4 py-3 border border-input rounded-lg bg-background/50">
               <Search className="w-5 h-5 text-muted-foreground" />
               <input
                 type="text"
@@ -223,43 +224,54 @@ export default function StatusPage() {
               />
             </div>
           </div>
-
           {/* Filters */}
-          <div className="mb-8 flex flex-wrap gap-3">
-            <div className="flex items-center gap-2">
-              <Filter className="w-4 h-4 text-muted-foreground" />
-              <span className="text-sm font-medium text-foreground">Filter:</span>
-            </div>
+<div className="mb-8 flex flex-wrap gap-3">
 
-            <div className="flex flex-wrap gap-2">
-              {["All", "Lost", "Found"].map((type) => (
-                <Button
-                  key={type}
-                  variant={filterType === type ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setFilterType(type)}
-                  className={filterType === type ? "bg-primary text-primary-foreground" : "bg-transparent"}
-                >
-                  {type}
-                </Button>
-              ))}
-            </div>
+  <div className="flex items-center gap-2">
+    <Filter className="w-4 h-4 text-muted-foreground" />
+    <span className="text-sm font-medium text-foreground">Filter:</span>
+  </div>
 
-            <div className="flex flex-wrap gap-2 ml-4">
-              {categories.slice(0, 3).map((cat) => (
-                <Button
-                  key={cat}
-                  variant={filterCategory === cat ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setFilterCategory(cat)}
-                  className={filterCategory === cat ? "bg-accent text-accent-foreground" : "bg-transparent"}
-                >
-                  {cat}
-                </Button>
-              ))}
-            </div>
-          </div>
+  {/* Type filters */}
+  <div className="flex flex-wrap gap-2">
+    {["All", "Lost", "Found"].map((type) => (
+      <Button
+        key={type}
+        size="sm"
+        onClick={() => setFilterType(type)}
+        className={
+          filterType === type
+            ? "bg-primary text-primary-foreground"
+            : "bg-[#121415] border border-[#1f2225] text-gray-300 hover:bg-[#1a1d21] hover:border-[#2a2e33]"
+        }
+      >
+        {type}
+      </Button>
+    ))}
+  </div>
 
+  {/* Category filters */}
+  <div className="flex flex-wrap gap-2 ml-4">
+    {categories.slice(0, 3).map((cat) => (
+      <Button
+        key={cat}
+        size="sm"
+        onClick={() => setFilterCategory(cat)}
+        className={
+          filterCategory === cat
+            ? "bg-accent text-accent-foreground"
+            : "bg-[#121415] border border-[#1f2225] text-gray-300 hover:bg-[#1a1d21] hover:border-[#2a2e33]"
+        }
+      >
+        {cat}
+      </Button>
+    ))}
+  </div>
+
+</div>
+
+
+          {/* High Match */}
           {highMatchItems.length > 0 && (
             <div className="mb-12">
               <div className="flex items-center gap-2 mb-6">
@@ -267,6 +279,7 @@ export default function StatusPage() {
                 <h2 className="text-xl font-bold text-foreground">Possible Matches</h2>
                 <Badge variant="secondary">{highMatchItems.length} found</Badge>
               </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {highMatchItems.map((item) => (
                   <ItemCard
@@ -282,9 +295,10 @@ export default function StatusPage() {
             </div>
           )}
 
-          {/* Other Items */}
+          {/* All Items */}
           <div>
             <h2 className="text-xl font-bold text-foreground mb-6">All Items</h2>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherItems.length > 0 ? (
                 otherItems.map((item) => (
@@ -299,7 +313,9 @@ export default function StatusPage() {
                 ))
               ) : (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-muted-foreground">No items found. Try adjusting your filters.</p>
+                  <p className="text-muted-foreground">
+                    No items found. Try adjusting your filters.
+                  </p>
                 </div>
               )}
             </div>
@@ -307,7 +323,9 @@ export default function StatusPage() {
         </div>
       </section>
 
-      {selectedItemData && <ItemDetailModal item={selectedItemData} onClose={() => setSelectedItem(null)} />}
+      {selectedItemData && (
+        <ItemDetailModal item={selectedItemData} onClose={() => setSelectedItem(null)} />
+      )}
     </div>
   )
 }
@@ -410,7 +428,6 @@ function ItemDetailModal({ item, onClose }: { item: any; onClose: () => void }) 
         </div>
 
         <div className="p-6 space-y-6">
-          {/* Image */}
           <div className="flex justify-center">
             <img
               src={item.image || "/placeholder.svg"}
@@ -419,7 +436,6 @@ function ItemDetailModal({ item, onClose }: { item: any; onClose: () => void }) 
             />
           </div>
 
-          {/* Basic Info */}
           <div>
             <div className="flex items-start justify-between mb-4">
               <div>
@@ -435,15 +451,17 @@ function ItemDetailModal({ item, onClose }: { item: any; onClose: () => void }) 
                     {item.type}
                   </Badge>
                   {item.matchScore > 0 && (
-                    <Badge className="bg-accent text-accent-foreground">{item.matchScore}% Match</Badge>
+                    <Badge className="bg-accent text-accent-foreground">
+                      {item.matchScore}% Match
+                    </Badge>
                   )}
                 </div>
               </div>
             </div>
+
             <p className="text-muted-foreground text-lg">{item.description}</p>
           </div>
 
-          {/* Details Grid */}
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-secondary/20 rounded-lg p-4">
               <p className="text-sm text-muted-foreground mb-1">Location</p>
@@ -477,35 +495,13 @@ function ItemDetailModal({ item, onClose }: { item: any; onClose: () => void }) 
             </div>
           </div>
 
-          {/* Match Info */}
-          {item.matchWith && item.matchScore > 0 && (
-            <div className="border-t border-border pt-6">
-              <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-accent" />
-                Potential Match
-              </h3>
-              <div className="bg-accent/5 border border-accent/20 rounded-lg p-4">
-                <p className="text-sm text-muted-foreground mb-2">This item has a {item.matchScore}% match with:</p>
-                <p className="font-semibold text-foreground mb-4">{item.matchItem?.title}</p>
-                <Link href={`/item/${item.matchWith}`}>
-                  <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">View Matched Item</Button>
-                </Link>
-              </div>
-            </div>
-          )}
-
-          {/* Action Buttons */}
           <div className="border-t border-border pt-6 flex gap-3">
             <Link href="/chat" className="flex-1">
               <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                 <MessageCircle className="w-4 h-4 mr-2" />
-                Message Owner
+                Contact
               </Button>
             </Link>
-            <Button variant="outline" className="flex-1 bg-transparent">
-              <Share2 className="w-4 h-4 mr-2" />
-              Share
-            </Button>
           </div>
         </div>
       </div>
